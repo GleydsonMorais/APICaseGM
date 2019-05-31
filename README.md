@@ -11,7 +11,7 @@ Metodos:
 
 APIController api = new APIControllerM();
 
-api.PostCaminhoneiro(caminhoneiro)
+api.PostCaminhoneiro(caminhoneiro); <br/>
 api.GetCaminhoneiro(id);
 api.EditCaminhoneiro(caminhoneito);
 api.GetListCaminhoneiroCarga(id);
