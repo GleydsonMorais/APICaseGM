@@ -26,3 +26,6 @@ O quarto metodo recbe um ID ("S" ou "N") e retorna a lista de caminhoneiros que 
 O quinto metodo recebe duas datas (dataInicio e dataFinal), se data fical for nula, retornara a lista de caminhoneiros que passou pelo terminao na dataInicio e a dataFinal não for nula, retonarar uma lista de caminhoneiros que passaram pelo terminal naquele periodo de tempo, que pose ser uma semana, mes, ano. vai do periodo que queira pesquisar. <br/>
 O sexto metodo não recebe nenhum parametro e retonar uma lista de caminhoneiro que possuem Caminhão proprio. <br/>
 o setimo metdo não recebe nenhum parametro e retorna uma lista de origem e destino agrupada por tipo de caminhao. <br/>
+
+Os testes unitario são realizado no projeto TesteAPICaseGM.
+Todos os metodos são testados nesse projeto.
