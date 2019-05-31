@@ -1,0 +1,83 @@
+﻿<div class="row">
+    <div class="col-md-3">
+        <p>Cadastrar Caminhoneiro.</p>
+        <p><a class="btn btn-default" data-toggle="modal" data-target="#ModalCadastrarCaminhoneiro">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-3">
+        <p>Editar Caminhoneiro.</p>
+        <p>
+            @Html.DropDownList("caminhoneiroSelect", (List<SelectListItem>)ViewBag.ListCaminhoneiro, new { @class = "form-control" })
+            <button class="btn btn-default" id="buttonEditCaminhoneiro">Editar</button>
+        </p>
+    </div>
+    <div class="col-md-3">
+        <p>Buscas lista de caminhoneiros com Carga ou sem Carga.</p>
+        <p>
+            @using (Html.BeginForm("GetListCaminhoneiroCarga", "api/API", FormMethod.Get))
+            {
+                @Html.DropDownList("id", (List<SelectListItem>)ViewBag.Carregado, new { @class = "form-control" })
+                <button class="btn btn-default" type="submit">Buscar</button>
+            }
+        </p>
+    </div>
+    <div class="col-md-3">
+        <p>Quantidade de Caminhoneiros com veiculos proprios.</p>
+        <p>
+            @using (Html.BeginForm("GetListCaminhoneiroComVeiculos", "api/API", FormMethod.Get))
+            {
+                <button class="btn btn-default" type="submit">Buscar</button>
+
+            }
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <p>Quantidade de caminhões carregados que passaram nesse periodo.</p>
+        <p>
+            @using (Html.BeginForm("GetListCaminhoneiroPeriodo", "api/API", FormMethod.Get))
+            {
+                @Html.TextBox("dataInicio", "", new { @class = "form-control", @type = "Date", @placeholder = "00/00/0000" })
+                @Html.TextBox("dataFinal", "", new { @class = "form-control", @type = "Date", @placeholder = "00/00/0000" })
+                <button class="btn btn-default" type="submit">Buscar</button>
+
+            }
+        </p>
+    </div>
+    <div class="col-md-3">
+        <p>Lista de Caminhoneiros agrupado por Tipo de Caminhao.</p>
+        <p>
+            <a href="@Url.Action("GetListCaminhoneiroPorCaminhao", "api/API")" class="btn btn-default">Buscar</a>
+        </p>
+    </div>
+</div>
+
+@Html.Partial("_ModalCadastrarCaminhoneiro")
+
+@Html.Partial("_ModalEditarCaminhoneiro")
+
+@section scripts {
+
+    <script>
+        $(document).on("click", "#buttonEditCaminhoneiro", function () {
+            var caminhoneiro = $("#caminhoneiroSelect").val();
+
+            $.get('@Url.Action("GetCaminhoneiro", "api/API")', { id: caminhoneiro }, function (data) {
+                $("#ModalEditCaminhoneiro #idCaminhoneiro").val(data.idCaminhoneiro);
+                $("#ModalEditCaminhoneiro #nome").val(data.nome);
+                $("#ModalEditCaminhoneiro #idade").val(data.idade);
+                $("#ModalEditCaminhoneiro #sexo").val(data.sexo);
+                $("#ModalEditCaminhoneiro #possuiVeiculo").val(data.possuiVeiculo);
+                $("#ModalEditCaminhoneiro #tipoCNH").val(data.tipoCNH);
+                $("#ModalEditCaminhoneiro #carregado").val(data.carregado);
+                $("#ModalEditCaminhoneiro #caminhao").val(data.caminhao);
+                $("#ModalEditCaminhoneiro #dataChegada").val(data.dataChegada.substring(0, 10));
+                $("#ModalEditCaminhoneiro #origem").val(data.origem);
+                $("#ModalEditCaminhoneiro #destino").val(data.destino);
+            });
+
+            $("#ModalEditCaminhoneiro").modal('show');
+        });
+    </script>    
+}

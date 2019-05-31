@@ -1,0 +1,73 @@
+﻿<!-- Modal Cadastrar Caminhonheiro -->
+<div class="modal fade" id="ModalEditCaminhoneiro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Título do modal</h4>
+            </div>
+
+            @using (Html.BeginForm("EditCaminhoneiro", "api/API", FormMethod.Post))
+            {
+                @Html.Hidden("idCaminhoneiro")
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label class="control-label">Nome</label>
+                            @Html.TextBox("nome", "", new { @class = "form-control", @id = "nome" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label">Idade</label>
+                            @Html.TextBox("idade", "", new { @class = "form-control", @id = "idade" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label">Sexo</label>
+                            @Html.DropDownList("sexo", (List<SelectListItem>)ViewBag.Sexo, new { @class = "form-control", @id = "sexo" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label">Data de Chegada</label>
+                            @Html.TextBox("dataChegada", "{0:yyyy-MM-dd}", new { @type = "Date", @class = "form-control", @id = "dataChegada" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label class="control-label">Possui veiculo</label>
+                            @Html.DropDownList("possuiVeiculo", (List<SelectListItem>)ViewBag.PossuiVeiculo, new { @class = "form-control", @id = "possuiVeiculo" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label">Tipo da CNH</label>
+                            @Html.DropDownList("tipoCNH", (List<SelectListItem>)ViewBag.TipoCNH, new { @class = "form-control", @id = "tipoCNH" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label">Esta Carregado?</label>
+                            @Html.DropDownList("carregado", (List<SelectListItem>)ViewBag.Carregado, new { @class = "form-control", @id = "carregado" })
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label class="control-label">Tipo do Caminhão</label>
+                            @Html.DropDownList("caminhao", (List<SelectListItem>)ViewBag.Caminhao, new { @class = "form-control", @id = "caminhao" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Origem</label>
+                            @Html.TextBox("origem", "", new { @class = "form-control", @placeholder = "Av. Sapé, 1247 - Manaíra, João Pessoa - PB, 58038382", @id = "origem" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label">Destino</label>
+                            @Html.TextBox("destino", "", new { @class = "form-control", @placeholder = "R. Fidêncio Ramos, 302 - 12o andar - Vila Olímpia, São Paulo - SP, 04551-010", @id = "destino" })
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary">Salvar mudanças</button>
+                </div>
+
+            }
+
+
+        </div>
+    </div>
+</div>
